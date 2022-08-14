@@ -29,11 +29,13 @@
 }
 
 .form__input_type_error {
+    visibility: hidden;
     border-bottom: rgba(255, 0, 0, 0.2) 1px solid;
     margin-bottom: 5px;
 }
 
 .form__input_error_visible {
+    visibility: visible;
     font-size: 12px;
     line-height: 1;
     color: #FF0000;

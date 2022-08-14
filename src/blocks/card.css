@@ -53,6 +53,7 @@
 
 .card__like-area {
     display: flex;
+    flex-direction: column;
     gap: 3px;
 }
 
@@ -74,7 +75,7 @@
 }
   
 .card__like-button_active {
-    background: url("../images/icons/like_icon-active.svg");
+    background: url("../images/icons/like_icon-active.svg") center no-repeat;
 }
 
 .card__likes-count {

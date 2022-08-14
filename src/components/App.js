@@ -11,12 +11,13 @@ import AddPlacePopup from "./AddPlacePopup";
 import DeletePopup from "./DeletePopup";
 
 function App() {
+  //----------------Variables----------------
   const [cards, setCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
-  const [isImagePopupOpen, setImagePreviewOpen] = useState(false);
+  const [isImagePopupOpen, setImagePopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
     name: "",
@@ -24,10 +25,11 @@ function App() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
+//----------------Hooks----------------
   useEffect(() => {
     api.getUserInfo().then((user) => {
         setCurrentUser(user);
-      }).catch(console.log);
+      }).catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function App() {
       .catch(console.log);
   }, []);
 
-  //Event Handlers
+  //----------------Event Handlers----------------
   const handleEditAvatarClick = () => {
     setEditAvatarPopupOpen(true);
   };
@@ -56,7 +58,7 @@ function App() {
   };
 
   const handleCardClick = (card) => {
-    setImagePreviewOpen(true);
+    setImagePopupOpen(true);
     setSelectedCard({
       name: card.name,
       link: card.link,
@@ -67,7 +69,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
-    setImagePreviewOpen(false);
+    setImagePopupOpen(false);
     setDeletePopupOpen(false);
   };
 
@@ -77,7 +79,7 @@ function App() {
         setIsLoading(false);
         setCurrentUser(res);
         closeAllPopups();
-      }).catch(console.log);
+      }).catch(err => console.log(err));
   };
 
   const handleUpdateAvatar = (url) => {
@@ -86,7 +88,7 @@ function App() {
         setIsLoading(false);
         setCurrentUser(res);
         closeAllPopups();
-      }).catch(console.log);
+      }).catch(err => console.log(err));
   };
 
   function handleCardLike(card) {
@@ -94,11 +96,9 @@ function App() {
 
     api.toggleLike(card._id, isLiked).then((newCard) => {
         setCards((cards) =>
-          cards.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
+          cards.map((currentCard) =>currentCard._id === card._id ? newCard : currentCard)
         );
-      }).catch(console.log);
+      }).catch(err => console.log(err));
   }
 
   function handleCardDelete(e) {
@@ -111,7 +111,7 @@ function App() {
         );
         setCards(newCards);
         closeAllPopups();
-      }).catch(console.log);
+      }).catch(err => console.log(err));
   }
 
   function handleAddPlaceSubmit(card) {
@@ -120,7 +120,7 @@ function App() {
         setIsLoading(false);
         setCards([card, ...cards]);
         closeAllPopups();
-      }).catch(console.log);
+      }).catch(err => console.log(err));
   }
 
   return (

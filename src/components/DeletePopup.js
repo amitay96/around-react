@@ -5,7 +5,7 @@ const DeletePopup = ({ isLoading, isOpen, onClose, onSubmitDelete }) => {
   return (
     <PopupWithForm
       title="Are you sure?"
-      name="delete-card"
+      name="delete-form"
       buttonText={`${isLoading ? "Deleting..." : "Yes"}`}
       isOpen={isOpen}
       onClose={onClose}

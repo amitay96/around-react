@@ -2,42 +2,34 @@ import React, { useContext } from 'react';
 import Card from './Card';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-const Main = ({
-  onCardClick,
-  onAddPlaceClick,
-  onEditProfileClick,
-  onEditAvatarClick,
-  cards,
-  onCardLike,
-  onDeleteButtonClick,
-}) => {
+const Main = (props) => {
   const currentUser = useContext(CurrentUserContext);
   
   return (
       <main className="content">
       <section className="profile">
-        <div className="profile__image-container" onClick={onEditAvatarClick}>
+        <div className="profile__image-container" onClick={props.onEditAvatarClick}>
           <img className="profile__image" src={currentUser.avatar} alt="Users Round Avatar"/>
         </div>
         <div className="profile__info">
             <div className="profile__person">
                 <h1 className="profile__name">{currentUser.name}</h1>
-                <button className="profile__edit-button" type="button" onClick={onEditProfileClick}></button>
+                <button className="profile__edit-button" type="button" onClick={props.onEditProfileClick}></button>
             </div>
             <p className="profile__title">{currentUser.about}</p>
         </div>
-        <button className="profile__add-button" type="button" onClick={onAddPlaceClick}></button>
+        <button className="profile__add-button" type="button" onClick={props.onAddPlaceClick}></button>
       </section>
       <section className="cards">
           <ul className="cards__list">
-          {cards.map((card) => {
+          {props.cards.map((card) => {
             return (
               <Card
                 card={card}
                 key={card._id}
-                onCardClick={onCardClick}
-                onLikeCard={onCardLike}
-                onDeleteButtonClick={onDeleteButtonClick}
+                onCardClick={props.onCardClick}
+                onLikeCard={props.onCardLike}
+                onDeleteButtonClick={props.onDeleteButtonClick}
               />
             );
           })}

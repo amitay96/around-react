@@ -19,18 +19,15 @@ const EditAvatarPopup = ({ isLoading, isOpen, onClose, onUpdateAvatar }) => {
       onSubmit={handleSubmit}
     >
       <fieldset className="form__fieldset">
-        <div className="form__input-container">
-          <input
-            id="avatar-input"
-            type="url"
-            name="link"
-            placeholder="Profile Image link"
-            className="form__input form__input_type_avatar"
+          <input className="form__input"
+            id="new-avatar" 
+            type="url" 
+            name="avatar" 
+            placeholder="Link to new Picture"
             required
             ref={url}
           />
-          <span className="form__input-error avatar-input-error"></span>
-        </div>
+          <span className="form__input_type_error" id="new-avatar-error"></span>
       </fieldset>
     </PopupWithForm>
   );
