@@ -1,7 +1,7 @@
 # Project 11: Around The U.S.
 
 ### Overview
-This project is built using React, The main feature is a users profile with an avatarand a social media platform based on pictures from different users with option to like or dislike, also every user can delete his own photo.
+This project is built using React, The main feature is a users profile with an avatar and a social media platform based on pictures from different users soon with option to like or dislike.
 The Data is fetched from the API and updated accordingly.
 Optimized for the most popular screen resolutions.
 
@@ -13,7 +13,7 @@ Optimized for the most popular screen resolutions.
 
 
 - ReactJS
-- React Hooks (useState, useEffect, useRef, useContext)
+- React Hooks (useState, useEffect)
 - Javascript ES6 classes
 - API Implementation
 - Webpack, Postcss, Babel
