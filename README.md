@@ -1,4 +1,4 @@
-# Project 11: Around The U.S.
+# Project 10: Around The U.S.
 
 ### Overview
 This project is built using React, The main feature is a users profile with an avatar and a social media platform based on pictures from different users soon with option to like or dislike.
