@@ -3,16 +3,13 @@ import Card from './Card';
 import { api } from '../utils/api.js';
 
 const Main = (props) => {
-  const [ userName, setUserName ] = useState("");
-  const [ userDescription, setUserDescription ] = useState("");
-  const [ userAvatar, setUserAvatar ] = useState("");
+  
+  const [ user, setUser ] = useState([]);
   const [ cards, setCards ] = useState([]);
 
   useEffect(() => {
     api.getUserInfo().then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
+        setUser(res);
       }).catch((err) => console.log(err));
   }, []);
 
@@ -27,16 +24,16 @@ const Main = (props) => {
       <main className="content">
       <section className="profile">
         <div className="profile__image-container" onClick={props.onEditAvatarClick}>
-          <img className="profile__image" src={userAvatar} alt="Users Round Avatar"/>
+          <img className="profile__image" src={user.avatar} alt="Users Round Avatar"/>
         </div>
         <div className="profile__info">
             <div className="profile__person">
-                <h1 className="profile__name">{userName}</h1>
-                <button className="profile__edit-button" type="button" onClick={props.onEditProfileClick}></button>
+                <h1 className="profile__name">{user.name}</h1>
+                <button className="profile__edit-button" type="button" onClick={props.onEditProfileClick} />
             </div>
-            <p className="profile__title">{userDescription}</p>
+            <p className="profile__title">{user.about}</p>
         </div>
-        <button className="profile__add-button" type="button" onClick={props.onAddPlaceClick}></button>
+        <button className="profile__add-button" type="button" onClick={props.onAddPlaceClick} />
       </section>
       <section className="cards">
           <ul className="cards__list">

@@ -64,9 +64,9 @@ function App() {
         >
           <fieldset className="form__fieldset">
             <input className="form__input" id="name-input" type="text" name="name" placeholder="Name" minLength="2" maxLength="40" required/>
-            <span id="name-input-error"></span>
+            <span id="name-input-error" />
             <input className="form__input" id="title-input" type="text" name="job" placeholder="About me" minLength="2" maxLength="200" required/>
-            <span id="title-input-error"></span>
+            <span id="title-input-error" />
           </fieldset>
       </PopupWithForm>
 
@@ -79,9 +79,9 @@ function App() {
         >
           <fieldset className="form__fieldset">
             <input className="form__input" id="place-name" type="text" name="name" placeholder="Title" minLength="1" maxLength="30" required/>
-            <span id="place-name-error"></span>
+            <span id="place-name-error" />
             <input className="form__input" id="place-url" type="url" name="link" placeholder="Image URL" required/>
-            <span id="place-url-error"></span>
+            <span id="place-url-error" />
           </fieldset>
       </PopupWithForm>
 
@@ -94,7 +94,7 @@ function App() {
         >
           <fieldset className="form__fieldset">
             <input className="form__input" id="new-avatar" type="url" name="avatar" placeholder="Link to new Picture" required/>
-            <span id="new-avatar-error"></span>
+            <span id="new-avatar-error" />
           </fieldset>
       </PopupWithForm>
 
