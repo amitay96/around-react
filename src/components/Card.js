@@ -1,7 +1,6 @@
 import React from "react";
 
 const Card = (props) => {
-
   function handleClick() {
     props.onCardClick(props.card);
   }
@@ -9,7 +8,12 @@ const Card = (props) => {
   return (
     <li className="card">
       <button className="card__delete_button" type="button" />
-      <img className="card__image" src={props.card.link} alt={props.card.name} onClick={handleClick} />
+      <img
+        className="card__image"
+        src={props.card.link}
+        alt={props.card.name}
+        onClick={handleClick}
+      />
       <div className="card__title-area">
         <h2 className="card__title">{props.card.name}</h2>
         <div className="card__like-area">

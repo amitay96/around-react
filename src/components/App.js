@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
+import React, { useState } from "react";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 
@@ -48,10 +48,10 @@ function App() {
     <div className="App">
       <Header />
       <Main
-      onEditProfileClick={handleEditProfileClick}
-      onAddPlaceClick={handleAddPlaceClick}
-      onEditAvatarClick={handleEditAvatarClick}
-      onCardClick={handleCardClick}
+        onEditProfileClick={handleEditProfileClick}
+        onAddPlaceClick={handleAddPlaceClick}
+        onEditAvatarClick={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
 
@@ -61,13 +61,31 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
         buttonText="Save"
-        >
-          <fieldset className="form__fieldset">
-            <input className="form__input" id="name-input" type="text" name="name" placeholder="Name" minLength="2" maxLength="40" required/>
-            <span id="name-input-error" />
-            <input className="form__input" id="title-input" type="text" name="job" placeholder="About me" minLength="2" maxLength="200" required/>
-            <span id="title-input-error" />
-          </fieldset>
+      >
+        <fieldset className="form__fieldset">
+          <input
+            className="form__input"
+            id="name-input"
+            type="text"
+            name="name"
+            placeholder="Name"
+            minLength="2"
+            maxLength="40"
+            required
+          />
+          <span id="name-input-error" />
+          <input
+            className="form__input"
+            id="title-input"
+            type="text"
+            name="job"
+            placeholder="About me"
+            minLength="2"
+            maxLength="200"
+            required
+          />
+          <span id="title-input-error" />
+        </fieldset>
       </PopupWithForm>
 
       <PopupWithForm
@@ -76,13 +94,29 @@ function App() {
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
         buttonText="Create"
-        >
-          <fieldset className="form__fieldset">
-            <input className="form__input" id="place-name" type="text" name="name" placeholder="Title" minLength="1" maxLength="30" required/>
-            <span id="place-name-error" />
-            <input className="form__input" id="place-url" type="url" name="link" placeholder="Image URL" required/>
-            <span id="place-url-error" />
-          </fieldset>
+      >
+        <fieldset className="form__fieldset">
+          <input
+            className="form__input"
+            id="place-name"
+            type="text"
+            name="name"
+            placeholder="Title"
+            minLength="1"
+            maxLength="30"
+            required
+          />
+          <span id="place-name-error" />
+          <input
+            className="form__input"
+            id="place-url"
+            type="url"
+            name="link"
+            placeholder="Image URL"
+            required
+          />
+          <span id="place-url-error" />
+        </fieldset>
       </PopupWithForm>
 
       <PopupWithForm
@@ -91,20 +125,26 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         buttonText="Save"
-        >
-          <fieldset className="form__fieldset">
-            <input className="form__input" id="new-avatar" type="url" name="avatar" placeholder="Link to new Picture" required/>
-            <span id="new-avatar-error" />
-          </fieldset>
+      >
+        <fieldset className="form__fieldset">
+          <input
+            className="form__input"
+            id="new-avatar"
+            type="url"
+            name="avatar"
+            placeholder="Link to new Picture"
+            required
+          />
+          <span id="new-avatar-error" />
+        </fieldset>
       </PopupWithForm>
 
       <PopupWithForm
         name="delete-popup"
         title="Are you sure?"
         buttonText="Yes"
-        >
-      </PopupWithForm>
-    
+      />
+
       <ImagePopup
         card={selectedCard}
         isOpen={isImagePopupOpen}
