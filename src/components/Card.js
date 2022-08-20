@@ -21,7 +21,7 @@ const Card = (props) => {
   }
 
   function handleDeleteCard() {
-    props.onDeleteButtonClick(props.card);
+    props.onCardDelete(props.card);
   }
 
   return (
