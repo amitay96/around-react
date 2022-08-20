@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-
 const Main = ({
   onEditAvatarClick,
   onEditProfileClick,
@@ -10,7 +9,7 @@ const Main = ({
   cards,
   onCardClick,
   onCardLike,
-  onCardDelete
+  onCardDelete,
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
@@ -46,11 +45,11 @@ const Main = ({
           {cards.map((card) => {
             return (
               <Card
-              card={card}
-              key={card._id}
-              onCardClick={onCardClick}
-              onCardLike={onCardLike}
-              onCardDelete={onCardDelete}
+                card={card}
+                key={card._id}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
               />
             );
           })}
