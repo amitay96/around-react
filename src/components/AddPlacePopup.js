@@ -10,7 +10,6 @@ const AddPlacePopup = ({ isOpen, onClose, onAddPlaceSubmit, isLoading }) => {
   }
 
   function handleNewLink(e) {
-    console.log(e.target.value);
     setLink(e.target.value);
   }
 
@@ -31,9 +30,29 @@ const AddPlacePopup = ({ isOpen, onClose, onAddPlaceSubmit, isLoading }) => {
       onSubmit={handleSubmit}
     >
       <fieldset className="form__fieldset">
-        <input id="place-name" type="text" name="name" placeholder="Title" className="form__input" minLength="1" maxLength="30" value={name || ""} onChange={handleNewName} required/>
+        <input
+          id="place-name"
+          type="text"
+          name="name"
+          placeholder="Title"
+          className="form__input"
+          minLength="1"
+          maxLength="30"
+          value={name || ""}
+          onChange={handleNewName}
+          required
+        />
         <span id="place-name-error"></span>
-        <input id="place-url" type="url" name="link" placeholder="Image URL" className="form__input" value={link || ""} onChange={handleNewLink} required/>
+        <input
+          id="place-url"
+          type="url"
+          name="link"
+          placeholder="Image URL"
+          className="form__input"
+          value={link || ""}
+          onChange={handleNewLink}
+          required
+        />
         <span id="place-url-error"></span>
       </fieldset>
     </PopupWithForm>

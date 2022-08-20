@@ -2,11 +2,12 @@ import React, { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
-  const url = useRef();
+  let url = useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar(url.current.value);
+    url.current.value = "";
   }
 
   return (
@@ -19,15 +20,16 @@ const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
       onSubmit={handleSubmit}
     >
       <fieldset className="form__fieldset">
-          <input className="form__input"
-            id="new-avatar" 
-            type="url" 
-            name="avatar" 
-            placeholder="Link to new Picture"
-            required
-            ref={url}
-          />
-          <span className="form__input_type_error" id="new-avatar-error"></span>
+        <input
+          className="form__input"
+          id="new-avatar"
+          type="url"
+          name="avatar"
+          placeholder="Link to new Picture"
+          required
+          ref={url}
+        />
+        <span className="form__input_type_error" id="new-avatar-error"></span>
       </fieldset>
     </PopupWithForm>
   );

@@ -73,6 +73,11 @@ function App() {
     });
   };
 
+  const handleCardDeleteClick = (card) => {
+    setDeletePopupOpen(true);
+    setSelectedCard(card);
+  };
+
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
@@ -140,12 +145,6 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  const handleDeleteButtonClick = (card) => {
-    setDeletePopupOpen(true);
-    setSelectedCard(card);
-    handleCardDelete(card);
-  };
-
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -158,7 +157,7 @@ function App() {
           cards={cards}
           onCardClick={handleCardClick}
           onCardLike={handleCardLike}
-          onCardDeleteClick={handleDeleteButtonClick}
+          onCardDeleteClick={handleCardDeleteClick}
         />
 
         <Footer />
