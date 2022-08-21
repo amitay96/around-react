@@ -11,7 +11,7 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -36,14 +36,36 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
       buttonText={`${isLoading ? "Saving..." : "Save"}`}
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}>
-
-    <fieldset className="form__fieldset">
-        <input className="form__input" id="name-input" type="text" name="name" placeholder="Name" minLength="2" maxLength="40" value={name || ""} onChange={handleNameChange} required/>
+      onSubmit={handleSubmit}
+    >
+      <fieldset className="form__fieldset">
+        <input
+          className="form__input"
+          id="name-input"
+          type="text"
+          name="name"
+          placeholder="Name"
+          minLength="2"
+          maxLength="40"
+          value={name || ""}
+          onChange={handleNameChange}
+          required
+        />
         <span className="form__input_type_error" id="name-input-error" />
-        <input className="form__input" id="title-input" type="text" name="about" placeholder="About me" minLength="2" maxLength="200" value={description || ""} onChange={handleDescriptionChange} required/>
+        <input
+          className="form__input"
+          id="title-input"
+          type="text"
+          name="about"
+          placeholder="About me"
+          minLength="2"
+          maxLength="200"
+          value={description || ""}
+          onChange={handleDescriptionChange}
+          required
+        />
         <span className="form__input_type_error" id="title-input-error" />
-    </fieldset>
+      </fieldset>
     </PopupWithForm>
   );
 };

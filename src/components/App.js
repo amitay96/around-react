@@ -12,11 +12,11 @@ import DeletePopup from "./DeletePopup";
 
 function App() {
   //----------------Variables----------------
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
-  const [isImagePopupOpen, setImagePopupOpen] = useState(false);
-  const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [selectedCard, setSelectedCard] = useState({
@@ -46,27 +46,38 @@ function App() {
 
   //----------------Event Handlers----------------
   const handleEditAvatarClick = () => {
-    setEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   };
 
   const handleEditProfileClick = () => {
-    setEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   };
 
   const handleAddPlaceClick = () => {
-    setAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
   };
 
   const closeAllPopups = () => {
-    setAddPlacePopupOpen(false);
-    setEditAvatarPopupOpen(false);
-    setEditProfilePopupOpen(false);
-    setImagePopupOpen(false);
-    setDeletePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsImagePopupOpen(false);
+    setIsDeletePopupOpen(false);
   };
 
+  useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        closeAllPopups();
+      }
+    };
+    document.addEventListener("keydown", closeByEscape);
+
+    return () => document.removeEventListener("keydown", closeByEscape);
+  }, []);
+
   const handleCardClick = (card) => {
-    setImagePopupOpen(true);
+    setIsImagePopupOpen(true);
     setSelectedCard({
       name: card.name,
       link: card.link,
@@ -74,7 +85,7 @@ function App() {
   };
 
   const handleCardDeleteClick = (card) => {
-    setDeletePopupOpen(true);
+    setIsDeletePopupOpen(true);
     setSelectedCard(card);
   };
 
@@ -99,14 +110,14 @@ function App() {
     api
       .deleteCard(selectedCard._id)
       .then(() => {
-        setIsLoading(false);
         const newCards = cards.filter(
           (currentCard) => currentCard._id !== selectedCard._id
         );
         setCards(newCards);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleUpdateUser = ({ name, about }) => {
@@ -114,11 +125,11 @@ function App() {
     api
       .setUserInfo({ name, about })
       .then((res) => {
-        setIsLoading(false);
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleUpdateAvatar = (url) => {
@@ -126,11 +137,11 @@ function App() {
     api
       .setUserAvatar(url)
       .then((res) => {
-        setIsLoading(false);
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   };
 
   function handleAddPlaceSubmit(card) {
@@ -138,11 +149,11 @@ function App() {
     api
       .createCard(card)
       .then((newCard) => {
-        setIsLoading(false);
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
   return (
